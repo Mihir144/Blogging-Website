@@ -14,7 +14,6 @@
         {% else %}
             <title>Flask Blog</title>
         {% endif %}
-
     </head>
     <body>
     <header class="site-header">
@@ -38,7 +37,16 @@
         </div>
       </nav>
     </header>
-
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success">
+       <a href="{{ url_for("HomePage") }}" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{ message }}
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
     <main role="main" class="container">
   <div class="row">
     <div class="col-md-8">
